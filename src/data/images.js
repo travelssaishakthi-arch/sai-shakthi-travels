@@ -54,55 +54,62 @@ import gal08 from '../assets/images/gallery/gallery-08.jpg';
 import gal09 from '../assets/images/gallery/gallery-09.jpg';
 import gal10 from '../assets/images/gallery/gallery-10.jpg';
 
-// Curated high-resolution fallback photos
+// Fallback images
+import fbHero from '../assets/images/fallbacks/fallback-hero.jpg';
+import fbDestination from '../assets/images/fallbacks/fallback-destination.jpg';
+import fbService from '../assets/images/fallbacks/fallback-service.jpg';
+import fbFleet from '../assets/images/fallbacks/fallback-fleet.jpg';
+import fbGallery from '../assets/images/fallbacks/fallback-gallery.jpg';
+
+// Curated high-resolution local fallback photos
 export const fallbacks = {
-  hero: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
-  whyUs: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=80',
-  destination: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-  service: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
-  fleet: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
-  gallery: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85',
+  hero: fbHero,
+  whyUs: whyTravelWithUs,
+  destination: fbDestination,
+  service: fbService,
+  fleet: fbFleet,
+  gallery: fbGallery,
 };
 
 // Destination-specific curated fallbacks
 export const destinationFallbacks = {
-  pondicherry: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-  auroville: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
-  cuddalore: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-  chunnambar: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80',
-  paradiseBeach: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-  marakkanam: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80',
-  mahabalipuram: 'https://images.unsplash.com/photo-1600100397608-f010f421a996?auto=format&fit=crop&w=800&q=80',
-  gingee: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80',
-  chidambaram: 'https://images.unsplash.com/photo-1621360841013-c7683c659ec6?auto=format&fit=crop&w=800&q=80',
-  pichavaram: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80',
-  tiruvannamalai: 'https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&w=800&q=80',
-  kanchipuram: 'https://images.unsplash.com/photo-1600100397608-f010f421a996?auto=format&fit=crop&w=800&q=80',
-  chennai: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-  kodaikanal: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-  yercaud: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
-  thanjavur: 'https://images.unsplash.com/photo-1600100397608-f010f421a996?auto=format&fit=crop&w=800&q=80',
-  velankanni: 'https://images.unsplash.com/photo-1548625361-195fe579b940?auto=format&fit=crop&w=800&q=80',
+  pondicherry: destPondicherry,
+  auroville: destAuroville,
+  cuddalore: destCuddalore,
+  chunnambar: destChunnambar,
+  paradiseBeach: destParadiseBeach,
+  marakkanam: destMarakkanam,
+  mahabalipuram: destMahabalipuram,
+  gingee: destGingee,
+  chidambaram: destChidambaram,
+  pichavaram: destPichavaram,
+  tiruvannamalai: destTiruvannamalai,
+  kanchipuram: destKanchipuram,
+  chennai: destChennai,
+  kodaikanal: destKodaikanal,
+  yercaud: destYercaud,
+  thanjavur: destThanjavur,
+  velankanni: destVelankanni,
 };
 
 // Fleet-specific curated fallbacks
 export const fleetFallbacks = {
-  sedan: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
-  suv: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80',
-  innova: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
-  tempoTraveller: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+  sedan: fleetSedan,
+  suv: fleetSuv,
+  innova: fleetInnova,
+  tempoTraveller: fleetTempoTraveller,
 };
 
 // Service-specific curated fallbacks
 export const serviceFallbacks = {
-  outstationCab: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
-  airportTransfer: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
-  holidayTour: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-  familyTrip: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80',
-  corporateTravel: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-  oneWayTrip: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
-  roundTrip: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
-  customizedTrip: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80',
+  outstationCab: srvOutstationCab,
+  airportTransfer: srvAirportTransfer,
+  holidayTour: srvHolidayTour,
+  familyTrip: srvFamilyTrip,
+  corporateTravel: srvCorporateTravel,
+  oneWayTrip: srvOneWayTrip,
+  roundTrip: srvRoundTrip,
+  customizedTrip: srvCustomizedTrip,
 };
 
 // Centralized image mapping object

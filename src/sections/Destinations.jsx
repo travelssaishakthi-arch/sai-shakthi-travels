@@ -3,10 +3,14 @@ import { destinations } from '../data/destinations';
 import DestinationCard from '../components/DestinationCard';
 import CategoryFilter from '../components/CategoryFilter';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+
+const INITIAL_LIMIT = 8;
 
 export default function Destinations() {
   const headerRef = useScrollReveal();
   const [activeCategory, setActiveCategory] = useState('all');
+  const [showAll, setShowAll] = useState(false);
   const [visible, setVisible] = useState(true);
   const prevCat = useRef('all');
 
@@ -19,6 +23,14 @@ export default function Destinations() {
     [activeCategory]
   );
 
+  // Destinations to display (limited or all)
+  const displayedDestinations = useMemo(() => {
+    if (showAll || filtered.length <= INITIAL_LIMIT) {
+      return filtered;
+    }
+    return filtered.slice(0, INITIAL_LIMIT);
+  }, [filtered, showAll]);
+
   // Fade-out → swap → fade-in when category changes
   const handleCategoryChange = (catId) => {
     if (catId === prevCat.current) return;
@@ -28,6 +40,20 @@ export default function Destinations() {
       prevCat.current = catId;
       setVisible(true);
     }, 200);
+  };
+
+  const handleToggleShowAll = () => {
+    if (showAll) {
+      setShowAll(false);
+      const target = document.querySelector('#destinations');
+      if (target) {
+        const offset = 72;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    } else {
+      setShowAll(true);
+    }
   };
 
   // Trigger reveal on newly rendered cards
@@ -52,12 +78,14 @@ export default function Destinations() {
       return () => observer.disconnect();
     }, 80);
     return () => clearTimeout(timer);
-  }, [filtered]);
+  }, [displayedDestinations]);
+
+  const hasMore = filtered.length > INITIAL_LIMIT;
 
   return (
     <section
       id="destinations"
-      className="py-20 lg:py-28 bg-navy-950"
+      className="py-16 sm:py-20 lg:py-24 bg-navy-950"
       aria-labelledby="destinations-heading"
     >
       {/* ── Section header ── */}
@@ -72,7 +100,7 @@ export default function Destinations() {
           >
             Discover Beautiful Destinations From Pondicherry
           </h2>
-          <span className="reveal reveal-delay-2 gold-line mx-auto mt-5 mb-5" />
+          <span className="reveal reveal-delay-2 gold-line mx-auto mt-4 mb-4" />
           <p className="reveal reveal-delay-2 text-navy-300 font-sans text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-8">
             From peaceful coastal escapes to heritage towns and hill stations, plan
             your next journey with SAI SHAKTHI TRAVELS.
@@ -95,9 +123,9 @@ export default function Destinations() {
           className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5
             transition-opacity duration-200 ${visible ? 'opacity-100' : 'opacity-0'}`}
           aria-live="polite"
-          aria-label={`Destinations: showing ${filtered.length} result${filtered.length !== 1 ? 's' : ''}`}
+          aria-label={`Destinations: showing ${displayedDestinations.length} of ${filtered.length} destination${filtered.length !== 1 ? 's' : ''}`}
         >
-          {filtered.map((dest, i) => (
+          {displayedDestinations.map((dest, i) => (
             <DestinationCard
               key={dest.slug}
               destination={dest}
@@ -105,6 +133,33 @@ export default function Destinations() {
             />
           ))}
         </div>
+
+        {/* ── View All / Show Less Toggle Button ── */}
+        {hasMore && (
+          <div className="text-center mt-10 sm:mt-12">
+            <button
+              id="destinations-toggle-all-btn"
+              onClick={handleToggleShowAll}
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-lg
+                bg-navy-900 hover:bg-gold-500 text-white font-sans text-sm font-semibold tracking-wide
+                border border-navy-700 hover:border-gold-500 shadow-md hover:shadow-gold-500/20
+                transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-gold-400"
+              aria-expanded={showAll}
+            >
+              {showAll ? (
+                <>
+                  <span>Show Fewer Destinations</span>
+                  <ChevronUp size={16} aria-hidden="true" />
+                </>
+              ) : (
+                <>
+                  <span>View All Destinations ({filtered.length})</span>
+                  <ChevronDown size={16} aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
 
         {filtered.length === 0 && (
           <p className="text-center text-navy-400 font-sans text-sm py-16">

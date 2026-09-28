@@ -1,7 +1,10 @@
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { packages } from '../data/packages';
 import PackageCard from '../components/PackageCard';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { Compass } from 'lucide-react';
+import { Compass, ChevronDown, ChevronUp } from 'lucide-react';
+
+const INITIAL_LIMIT = 3;
 
 function scrollToContactWithPrefill(name) {
   window.dispatchEvent(
@@ -17,18 +20,66 @@ function scrollToContactWithPrefill(name) {
 
 export default function Packages() {
   const sectionRef = useScrollReveal();
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedPackages = useMemo(() => {
+    if (showAll || packages.length <= INITIAL_LIMIT) {
+      return packages;
+    }
+    return packages.slice(0, INITIAL_LIMIT);
+  }, [showAll]);
+
+  const handleToggleShowAll = () => {
+    if (showAll) {
+      setShowAll(false);
+      const target = document.querySelector('#packages');
+      if (target) {
+        const offset = 72;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    } else {
+      setShowAll(true);
+    }
+  };
+
+  // Trigger reveal on newly rendered cards
+  const gridRef = useRef(null);
+  useEffect(() => {
+    if (!gridRef.current) return;
+    const elements = gridRef.current.querySelectorAll('.reveal');
+    elements.forEach((el) => el.classList.remove('visible'));
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+      );
+      elements.forEach((el) => observer.observe(el));
+      return () => observer.disconnect();
+    }, 60);
+    return () => clearTimeout(timer);
+  }, [displayedPackages]);
+
+  const hasMore = packages.length > INITIAL_LIMIT;
 
   return (
     <section
       id="packages"
       ref={sectionRef}
-      className="py-20 lg:py-28 bg-navy-50"
+      className="py-16 sm:py-20 lg:py-24 bg-navy-50"
       aria-labelledby="packages-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Section header ── */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10 sm:mb-12">
           <span className="reveal section-label mb-3 block">
             TRAVEL PACKAGES
           </span>
@@ -38,7 +89,7 @@ export default function Packages() {
           >
             Journeys Designed Around You
           </h2>
-          <span className="reveal reveal-delay-2 gold-line mx-auto mt-5 mb-5" />
+          <span className="reveal reveal-delay-2 gold-line mx-auto mt-4 mb-4" />
           <p className="reveal reveal-delay-2 text-navy-500 font-sans text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             Choose a destination or tell us what you have in mind. We can help
             plan a comfortable journey from Pondicherry.
@@ -46,8 +97,8 @@ export default function Packages() {
         </div>
 
         {/* ── Package cards ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {packages.map((pkg, i) => (
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayedPackages.map((pkg, i) => (
             <PackageCard
               key={pkg.slug}
               pkg={pkg}
@@ -56,11 +107,38 @@ export default function Packages() {
           ))}
         </div>
 
+        {/* ── View All Packages Toggle ── */}
+        {hasMore && (
+          <div className="text-center mt-10">
+            <button
+              id="packages-toggle-all-btn"
+              onClick={handleToggleShowAll}
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-lg
+                bg-white hover:bg-navy-900 text-navy-800 hover:text-white font-sans text-sm font-semibold tracking-wide
+                border border-navy-200 hover:border-navy-900 shadow-sm hover:shadow-md
+                transition-all duration-300 ease-out focus-visible:outline-2 focus-visible:outline-gold-400"
+              aria-expanded={showAll}
+            >
+              {showAll ? (
+                <>
+                  <span>Show Fewer Packages</span>
+                  <ChevronUp size={16} aria-hidden="true" />
+                </>
+              ) : (
+                <>
+                  <span>Explore All Packages ({packages.length})</span>
+                  <ChevronDown size={16} aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
+
         {/* ── Bottom CTA ── */}
-        <div className="reveal mt-14">
+        <div className="reveal mt-12 sm:mt-14">
           <div
             className="bg-navy-950 rounded-xl px-8 py-8
-              flex flex-col sm:flex-row items-center justify-between gap-6"
+              flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl shadow-navy-950/10"
           >
             <div className="text-center sm:text-left">
               <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">

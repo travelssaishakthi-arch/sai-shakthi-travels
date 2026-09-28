@@ -30,7 +30,7 @@ export default function Hero() {
           src={images.hero.pondicherry}
           fallback={fallbacks.hero}
           alt="SAI SHAKTHI TRAVELS Pondicherry cab and tour service"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-[12%_center] md:object-center"
           loading="eager"
           fetchPriority="high"
           decoding="async"

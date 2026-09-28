@@ -9,13 +9,13 @@ export default function Fleet() {
     <section
       id="fleet"
       ref={sectionRef}
-      className="py-20 lg:py-28 bg-navy-950"
+      className="py-16 sm:py-20 lg:py-24 bg-navy-950"
       aria-labelledby="fleet-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Section header ── */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-12">
           <span className="reveal section-label text-gold-400 mb-3 block">
             OUR FLEET
           </span>
@@ -25,7 +25,7 @@ export default function Fleet() {
           >
             Choose the Right Ride for Your Journey
           </h2>
-          <span className="reveal reveal-delay-2 gold-line mx-auto mt-5 mb-5" />
+          <span className="reveal reveal-delay-2 gold-line mx-auto mt-4 mb-4" />
           <p className="reveal reveal-delay-2 text-navy-300 font-sans text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             Comfortable travel options for solo trips, families, groups
             and special occasions.

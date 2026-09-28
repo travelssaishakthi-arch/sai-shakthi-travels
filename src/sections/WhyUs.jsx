@@ -71,7 +71,7 @@ export default function WhyUs() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 lg:py-28 bg-navy-50"
+      className="py-16 sm:py-20 lg:py-24 bg-navy-50"
       aria-labelledby="why-us-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

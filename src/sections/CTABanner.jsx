@@ -1,8 +1,6 @@
 import { ArrowRight, Mail } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-
-const CTA_BG =
-  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80';
+import { fallbacks } from '../data/images';
 
 export default function CTABanner() {
   const sectionRef = useScrollReveal();
@@ -26,7 +24,7 @@ export default function CTABanner() {
       {/* Background */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <img
-          src={CTA_BG}
+          src={fallbacks.hero}
           alt=""
           className="w-full h-full object-cover object-center"
           loading="lazy"
