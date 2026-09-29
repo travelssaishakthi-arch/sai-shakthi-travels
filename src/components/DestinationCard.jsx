@@ -76,18 +76,19 @@ export default function DestinationCard({ destination, delay }) {
         </p>
 
         {/* CTA */}
-        <div className="pt-3 border-t border-navy-100">
+        <div className="pt-3 border-t border-navy-100 mt-auto">
           <button
             onClick={() => planTrip(name)}
             id={`dest-plan-${destination.slug}`}
-            className="inline-flex items-center gap-2 font-sans text-sm font-semibold
-              text-navy-700 hover:text-gold-600 transition-colors duration-200 group/btn"
+            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg
+              bg-navy-50 group-hover:bg-gold-500 text-navy-800 group-hover:text-white
+              font-sans text-xs sm:text-sm font-semibold transition-all duration-250 ease-out min-h-[42px]"
             aria-label={`Plan a trip to ${name}`}
           >
-            Plan This Trip
+            <span>Plan This Trip</span>
             <ArrowRight
-              size={14}
-              className="group-hover/btn:translate-x-0.5 transition-transform duration-200"
+              size={15}
+              className="transform group-hover:translate-x-1 transition-transform duration-200"
               aria-hidden="true"
             />
           </button>

@@ -10,7 +10,6 @@ import Packages from './sections/Packages';
 import WhyUs from './sections/WhyUs';
 import Fleet from './sections/Fleet';
 import Gallery from './sections/Gallery';
-import ContactCTA from './sections/ContactCTA';
 import CTABanner from './sections/CTABanner';
 import Contact from './sections/Contact';
 
@@ -26,7 +25,6 @@ export default function App() {
         <WhyUs />
         <Fleet />
         <Gallery />
-        <ContactCTA />
         <CTABanner />
         <Contact />
       </main>

@@ -80,19 +80,19 @@ function validateField(name, value) {
 
 // Shared input/select class helpers
 const fieldClass =
-  'w-full px-4 py-3 rounded-lg border border-navy-200 font-sans text-sm text-navy-900 placeholder:text-navy-400 ' +
-  'focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition-all duration-200 bg-white shadow-sm';
+  'w-full px-4 py-3.5 rounded-lg border border-navy-200 font-sans text-sm text-navy-900 placeholder:text-navy-400 ' +
+  'focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-gold-400 transition-all duration-200 bg-white shadow-sm min-h-[48px]';
 
 const errorFieldClass =
-  'w-full px-4 py-3 rounded-lg border border-red-400 font-sans text-sm text-navy-900 placeholder:text-navy-400 ' +
-  'focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all duration-200 bg-red-50/20 shadow-sm';
+  'w-full px-4 py-3.5 rounded-lg border border-red-400 font-sans text-sm text-navy-900 placeholder:text-navy-400 ' +
+  'focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 transition-all duration-200 bg-red-50/20 shadow-sm min-h-[48px]';
 
 function FieldError({ msg }) {
   if (!msg) return null;
   return (
-    <p role="alert" className="flex items-center gap-1.5 text-red-600 font-sans text-xs mt-1 font-medium">
+    <p role="alert" className="flex items-center gap-1.5 text-red-600 font-sans text-xs mt-1.5 font-medium">
       <AlertCircle size={13} aria-hidden="true" className="shrink-0" />
-      {msg}
+      <span>{msg}</span>
     </p>
   );
 }
@@ -101,11 +101,11 @@ function Label({ htmlFor, required, children }) {
   return (
     <label
       htmlFor={htmlFor}
-      className="block font-sans text-xs font-semibold text-navy-800 tracking-wide mb-1.5"
+      className="block font-sans text-xs font-semibold text-navy-900 tracking-wider uppercase mb-1.5"
     >
       {children}
       {required && (
-        <span className="text-gold-600 ml-0.5" aria-hidden="true">*</span>
+        <span className="text-gold-600 ml-1 font-bold" aria-hidden="true">*</span>
       )}
     </label>
   );
@@ -471,7 +471,7 @@ export default function EnquiryForm() {
           type="submit"
           id="enq-submit-btn"
           disabled={isSubmitting}
-          className="btn-primary w-full justify-center py-4 text-sm font-semibold tracking-wide disabled:opacity-75 disabled:cursor-not-allowed"
+          className="btn-primary w-full justify-center py-4 min-h-[50px] text-sm sm:text-base font-semibold tracking-wide disabled:opacity-75 disabled:cursor-not-allowed shadow-md shadow-gold-500/20"
           aria-label={isSubmitting ? 'Sending Enquiry...' : 'Submit Travel Enquiry'}
         >
           {isSubmitting ? (
@@ -493,19 +493,19 @@ export default function EnquiryForm() {
             href={`tel:${PRIMARY_PHONE}`}
             id="enq-call-primary"
             aria-label={`Call SAI SHAKTHI TRAVELS on ${PRIMARY_PHONE}`}
-            className="btn-navy flex-1 justify-center text-xs py-3"
+            className="btn-navy flex-1 justify-center text-xs sm:text-sm font-semibold py-3 px-4 min-h-[44px]"
           >
-            <Phone size={14} aria-hidden="true" />
-            Call {PRIMARY_PHONE}
+            <Phone size={15} aria-hidden="true" />
+            <span>Call {PRIMARY_PHONE}</span>
           </a>
           <a
             href={`tel:${SECONDARY_PHONE}`}
             id="enq-call-secondary"
             aria-label={`Call SAI SHAKTHI TRAVELS on ${SECONDARY_PHONE}`}
-            className="btn-navy flex-1 justify-center text-xs py-3"
+            className="btn-navy flex-1 justify-center text-xs sm:text-sm font-semibold py-3 px-4 min-h-[44px]"
           >
-            <Phone size={14} aria-hidden="true" />
-            Call {SECONDARY_PHONE}
+            <Phone size={15} aria-hidden="true" />
+            <span>Call {SECONDARY_PHONE}</span>
           </a>
         </div>
       </div>

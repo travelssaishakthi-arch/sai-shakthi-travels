@@ -21,6 +21,23 @@ const ICON_MAP = {
   Compass,
 };
 
+function enquireService(serviceTitle) {
+  window.dispatchEvent(
+    new CustomEvent('prefill-enquiry', {
+      detail: {
+        destination: '',
+        message: `Interested in booking "${serviceTitle}".`,
+      },
+    })
+  );
+  const target = document.querySelector('#contact');
+  if (target) {
+    const offset = 72;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
 /**
  * ServiceCard — reusable card for a single travel service.
  * @param {Object} service  - one entry from src/data/services.js
@@ -57,6 +74,23 @@ export default function ServiceCard({ service, delay }) {
         <p className="font-sans text-sm text-navy-500 leading-relaxed">
           {description}
         </p>
+      </div>
+
+      {/* Action link */}
+      <div className="pt-2 border-t border-navy-100/70 mt-auto">
+        <button
+          onClick={() => enquireService(title)}
+          className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold
+            text-navy-700 hover:text-gold-600 transition-colors duration-200 group/btn"
+          aria-label={`Enquire for ${title}`}
+        >
+          <span>Enquire Service</span>
+          <ArrowRight
+            size={13}
+            className="transform group-hover/btn:translate-x-1 transition-transform duration-200 text-gold-500"
+            aria-hidden="true"
+          />
+        </button>
       </div>
 
       {/* Bottom accent bar */}

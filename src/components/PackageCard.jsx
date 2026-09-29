@@ -84,31 +84,16 @@ export default function PackageCard({ pkg, delay }) {
         </p>
 
         {/* CTA row */}
-        <div className="pt-3 border-t border-navy-100 flex items-center gap-3 flex-wrap">
-          <button
-            onClick={() => planJourney(destination, title)}
-            className="inline-flex items-center gap-1.5 font-sans text-xs font-semibold
-              text-navy-600 hover:text-gold-600 transition-colors duration-200 group/link"
-            aria-label={`View details for ${title}`}
-          >
-            View Details
-            <ArrowRight
-              size={12}
-              className="group-hover/link:translate-x-0.5 transition-transform duration-200"
-              aria-hidden="true"
-            />
-          </button>
-
-          <div className="flex-1" />
-
+        <div className="pt-3 border-t border-navy-100 mt-auto flex items-center justify-between gap-3">
           <button
             onClick={() => planJourney(destination, title)}
             id={`pkg-journey-${pkg.slug}`}
-            className="btn-primary text-xs px-5 py-2.5"
+            className="w-full btn-primary text-xs sm:text-sm px-4 py-2.5 min-h-[44px] justify-center"
             aria-label={`Plan the ${title} journey`}
           >
-            <MessageCircle size={13} aria-hidden="true" />
-            Plan This Journey
+            <MessageCircle size={15} aria-hidden="true" />
+            <span>Plan This Journey</span>
+            <ArrowRight size={14} aria-hidden="true" className="ml-0.5" />
           </button>
         </div>
       </div>

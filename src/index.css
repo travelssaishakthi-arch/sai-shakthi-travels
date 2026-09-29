@@ -7,16 +7,18 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
     @apply font-sans text-navy-900 bg-white;
+    overflow-x: hidden;
   }
 
   /* Add bottom padding on mobile to clear the sticky contact bar */
   @media (max-width: 767px) {
     body {
-      padding-bottom: 60px;
+      padding-bottom: 64px;
     }
   }
 
@@ -37,15 +39,15 @@
 
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm bg-gold-500 text-white font-sans font-semibold text-sm tracking-wide transition-all duration-300 ease-out hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/30 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-gold-300 focus-visible:outline-offset-2 active:translate-y-0 active:shadow-none;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-gold-500 text-white font-sans font-semibold text-sm tracking-wide transition-all duration-300 ease-out hover:bg-gold-400 hover:shadow-lg hover:shadow-gold-500/25 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-gold-300 focus-visible:outline-offset-2 active:translate-y-0 active:shadow-none;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm border border-white/60 text-white font-sans font-medium text-sm tracking-wide backdrop-blur-sm transition-all duration-300 ease-out hover:bg-white hover:text-navy-900 hover:border-white hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-white/70 text-white font-sans font-medium text-sm tracking-wide backdrop-blur-sm transition-all duration-300 ease-out hover:bg-white hover:text-navy-900 hover:border-white hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 active:translate-y-0;
   }
 
   .btn-navy {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm bg-navy-900 text-white font-sans font-semibold text-sm tracking-wide transition-all duration-300 ease-out hover:bg-navy-800 hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-navy-700 focus-visible:outline-offset-2 active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-navy-900 text-white font-sans font-semibold text-sm tracking-wide transition-all duration-300 ease-out hover:bg-navy-800 hover:shadow-lg hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-navy-700 focus-visible:outline-offset-2 active:translate-y-0;
   }
 
   /* Section labels */

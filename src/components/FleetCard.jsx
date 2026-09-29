@@ -86,11 +86,11 @@ export default function FleetCard({ vehicle, delay }) {
           <button
             onClick={handleGetQuote}
             id={`fleet-quote-${vehicle.id}`}
-            className="btn-navy w-full justify-center text-xs py-3 px-5"
+            className="btn-navy w-full justify-center text-xs sm:text-sm font-semibold py-3 px-5 min-h-[44px]"
             aria-label={`Get a quote for ${name}`}
           >
-            <MessageSquare size={14} aria-hidden="true" />
-            Get Quote
+            <MessageSquare size={15} aria-hidden="true" />
+            <span>Get Quote</span>
           </button>
         </div>
       </div>

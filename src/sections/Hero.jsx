@@ -36,35 +36,35 @@ export default function Hero() {
           decoding="async"
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/75 via-navy-950/55 to-navy-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/65 to-navy-950/90" />
         {/* Subtle vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(4,8,26,0.5)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_35%,_rgba(4,8,26,0.6)_100%)]" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center
-        px-4 sm:px-6 lg:px-8 pt-28 pb-28 text-center">
+        px-4 sm:px-6 lg:px-8 pt-28 pb-24 text-center">
         {/* Eyebrow / Tagline */}
-        <div className="mb-6 animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
-          <span className="section-label text-gold-300">
+        <div className="mb-5 animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/80 backdrop-blur-md border border-gold-400/30 text-gold-300 font-sans font-semibold text-xs tracking-[0.18em] uppercase">
             YOUR JOURNEY, OUR RESPONSIBILITY
           </span>
         </div>
 
         {/* Main heading */}
         <h1
-          className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white
-            leading-[1.08] max-w-4xl text-shadow-lg
+          className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white
+            leading-[1.12] max-w-4xl text-shadow-lg tracking-tight
             animate-fade-up"
           style={{ animationDelay: '0.25s', animationFillMode: 'both' }}
         >
           Pondicherry Cabs,{' '}
-          <span className="italic text-gold-300">Travels &amp; Tours</span>
+          <span className="italic font-normal text-gold-300">Travels &amp; Tours</span>
         </h1>
 
         {/* Supporting text */}
         <p
-          className="mt-6 text-white/80 font-sans text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed text-shadow-sm
+          className="mt-5 text-white/90 font-sans text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed text-shadow-sm
             animate-fade-up"
           style={{ animationDelay: '0.4s', animationFillMode: 'both' }}
         >
@@ -74,22 +74,24 @@ export default function Hero() {
 
         {/* CTA buttons */}
         <div
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none
             animate-fade-up"
           style={{ animationDelay: '0.55s', animationFillMode: 'both' }}
         >
           <button
-            id="hero-plan-trip-btn"
+            id="hero-book-cab-btn"
             onClick={() => scrollTo('#contact')}
-            className="btn-primary text-sm px-8 py-4 w-full sm:w-auto"
+            className="btn-primary text-sm sm:text-base px-8 py-4 w-full sm:w-auto min-h-[48px] shadow-xl shadow-gold-500/25"
+            aria-label="Book a Cab — scroll to booking form"
           >
-            Plan Your Trip
-            <ArrowRight size={16} aria-hidden="true" />
+            Book a Cab
+            <ArrowRight size={18} aria-hidden="true" />
           </button>
           <button
-            id="hero-enquire-btn"
+            id="hero-explore-dest-btn"
             onClick={() => scrollTo('#destinations')}
-            className="btn-outline text-sm px-8 py-4 w-full sm:w-auto"
+            className="btn-outline text-sm sm:text-base px-7 py-4 w-full sm:w-auto min-h-[48px]"
+            aria-label="Explore Destinations — view destinations"
           >
             Explore Destinations
           </button>
